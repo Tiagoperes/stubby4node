@@ -133,7 +133,7 @@ Endpoints.prototype.found = function (endpoint, captures, callback) {
 function applyCaptures(obj, captures) {
   var results, key, value;
   if (typeof obj === 'string') {
-    return ejs.render(obj.replace(/<%/g, '<%='), captures);
+    return ejs.render(obj.replace(/<%/g, '<%-'), captures);
   }
 
   results = [];
@@ -148,7 +148,7 @@ function applyCaptures(obj, captures) {
     }
 
     if (typeof value === 'string') {
-      results.push(obj[key] = ejs.render(value.replace(/<%/g, '<%='), captures));
+      results.push(obj[key] = ejs.render(value.replace(/<%/g, '<%-'), captures));
     } else {
       results.push(applyCaptures(value, captures));
     }
